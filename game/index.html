@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Port Solano — Open-World Crime Game</title>
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #1b1420; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; color: #f2f0ea; }
+  #game { position: fixed; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
+  .hidden { display: none !important; }
+  #status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  #err { position: fixed; left: 8px; bottom: 8px; z-index: 60; background: #a00; color: #fff; padding: 6px 10px; font: 12px monospace; max-width: 80vw; }
+
+  /* ---------- HUD ---------- */
+  #hud { position: fixed; inset: 0; pointer-events: none; z-index: 10; }
+  #minimap { position: absolute; top: 14px; left: 14px; width: 220px; height: 220px; border: 3px solid rgba(255,255,255,.75); border-radius: 50%; background: #10131c; box-shadow: 0 0 0 3px rgba(0,0,0,.45); }
+  #top-right { position: absolute; top: 14px; right: 16px; text-align: right; text-shadow: 0 2px 4px rgba(0,0,0,.8); }
+  #money { font-size: 34px; font-weight: 800; color: #7dff9a; letter-spacing: 1px; }
+  #stars { font-size: 26px; letter-spacing: 4px; color: #cfd3da; }
+  #stars.hot { color: #ffb02e; }
+  #clock { font-size: 15px; color: #e8e4da; margin-top: 2px; }
+  #objective { position: absolute; left: 50%; bottom: 96px; transform: translateX(-50%); max-width: 640px; text-align: center; font-size: 17px; font-weight: 600; background: rgba(10,10,16,.62); padding: 9px 18px; border-radius: 8px; border-left: 4px solid #ff2e88; }
+  #health-box { position: absolute; left: 16px; bottom: 16px; width: 240px; text-shadow: 0 1px 3px rgba(0,0,0,.8); }
+  #health-box label { font-size: 12px; letter-spacing: 2px; color: #e8e4da; }
+  #health-bar { height: 12px; background: rgba(0,0,0,.55); border: 1px solid rgba(255,255,255,.5); border-radius: 6px; overflow: hidden; margin-top: 3px; }
+  #health-fill { height: 100%; width: 100%; background: linear-gradient(90deg, #37d67a, #9be15d); }
+  #speed { position: absolute; right: 20px; bottom: 16px; text-align: right; text-shadow: 0 2px 4px rgba(0,0,0,.8); }
+  #speed-val { font-size: 44px; font-weight: 800; line-height: 1; }
+  #speed small { font-size: 13px; color: #e8e4da; }
+  #msg { position: absolute; left: 50%; top: 22%; transform: translateX(-50%); text-align: center; text-shadow: 0 3px 8px rgba(0,0,0,.9); }
+  #msg-title { font-size: 42px; font-weight: 900; letter-spacing: 1px; color: #ffd98a; }
+  #msg-sub { font-size: 17px; margin-top: 4px; }
+  #hud-mute { position: absolute; right: 16px; top: 150px; pointer-events: auto; background: rgba(0,0,0,.5); border: 1px solid rgba(255,255,255,.4); color: #fff; border-radius: 6px; padding: 5px 9px; cursor: pointer; font-size: 15px; }
+  #hint { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); font-size: 12.5px; color: rgba(255,255,255,.75); text-shadow: 0 1px 3px rgba(0,0,0,.8); }
+
+  /* ---------- Screens ---------- */
+  .screen { position: fixed; inset: 0; z-index: 20; display: flex; align-items: center; justify-content: center; background: linear-gradient(160deg, rgba(24,10,34,.88), rgba(120,30,60,.82) 55%, rgba(255,122,60,.78)); }
+  .panel { max-width: 680px; width: calc(100% - 48px); text-align: center; padding: 28px 30px; background: rgba(8,8,14,.55); border: 1px solid rgba(255,255,255,.22); border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+  .panel h1 { margin: 0; font-size: 58px; letter-spacing: 4px; font-weight: 900; background: linear-gradient(90deg, #ffd98a, #ff2e88, #7db4ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .panel h2 { margin: 4px 0 0; font-size: 15px; letter-spacing: 6px; color: #ffd98a; font-weight: 700; }
+  .panel p { color: #e8e4da; font-size: 15px; line-height: 1.55; }
+  .panel .fine { font-size: 12px; color: rgba(255,255,255,.6); }
+  .btn { display: inline-block; margin: 6px 5px 0; padding: 13px 30px; font-size: 17px; font-weight: 800; letter-spacing: 1px; color: #fff; background: linear-gradient(90deg, #ff2e88, #ff7a3c); border: none; border-radius: 10px; cursor: pointer; box-shadow: 0 6px 18px rgba(255,46,136,.45); }
+  .btn:hover { filter: brightness(1.12); }
+  .btn.ghost { background: rgba(255,255,255,.12); box-shadow: none; border: 1px solid rgba(255,255,255,.35); }
+  .controls { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 18px; text-align: left; font-size: 13.5px; margin: 14px auto 4px; max-width: 520px; }
+  .controls b { color: #ffd98a; }
+  #over-title { font-size: 64px; }
+  kbd { background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.3); border-radius: 4px; padding: 1px 6px; font-size: 12px; }
+</style>
+</head>
+<body>
+<canvas id="game" aria-label="Port Solano: an open-world crime game. Drive, explore the city, and finish missions."></canvas>
+<p id="status" role="status" aria-live="polite"></p>
+<pre id="err" class="hidden"></pre>
+
+<div id="hud" class="hidden">
+  <canvas id="minimap" width="220" height="220"></canvas>
+  <div id="top-right">
+    <div id="money">$250</div>
+    <div id="stars">☆☆☆☆☆</div>
+    <div id="clock">18:24</div>
+  </div>
+  <div id="objective">Welcome to Port Solano.</div>
+  <div id="health-box">
+    <label>HEALTH <span id="health-text">100</span></label>
+    <div id="health-bar"><div id="health-fill"></div></div>
+  </div>
+  <div id="speed" class="hidden"><span id="speed-val">0</span><br><small>km/h</small></div>
+  <div id="msg" class="hidden"><div id="msg-title"></div><div id="msg-sub"></div></div>
+  <button id="hud-mute" title="Mute (M)">🔊</button>
+  <div id="hint">WASD move / drive · E enter car · F punch · Click shoot · Shift run · H horn · Esc pause · M mute · drag mouse to look</div>
+</div>
+
+<div id="screen-title" class="screen">
+  <div class="panel">
+    <h1>PORT SOLANO</h1>
+    <h2>OPEN-WORLD CRIME · SUNSET CITY</h2>
+    <p>You are <b>Ace Marlow</b>, fresh out of luck in Port Solano — a neon beach city of
+      fast cars, faster money and the Solano PD. Steal a ride, run packages for Rico,
+      lose the heat, and make a name for yourself.</p>
+    <p id="save-info"></p>
+    <button id="btn-play" class="btn">▶ &nbsp;NEW GAME</button>
+    <button id="btn-continue" class="btn ghost hidden">↻ &nbsp;CONTINUE</button>
+    <div class="controls">
+      <div><b>W A S D</b> — walk / drive</div><div><b>Mouse drag</b> — look around</div>
+      <div><b>E</b> — enter / exit car</div><div><b>Shift</b> — run</div>
+      <div><b>F</b> — punch</div><div><b>Click</b> — shoot</div>
+      <div><b>H</b> — horn</div><div><b>Esc / P</b> — pause</div>
+    </div>
+    <p>Story: <b>First Wheels</b> → <b>Package Run</b> → <b>Hot Pursuit</b>, then taxi fares.
+      Stars rise when you break the law — lose the cops to cool off. Progress autosaves.</p>
+    <p><button id="btn-mute" class="btn ghost">🔊 Sound: On</button></p>
+    <p class="fine">An original game made for the make.fun “Make GTA 6” bounty. All city, characters,
+      vehicles, names, story, art and sound are original. Not affiliated with Rockstar Games.</p>
+  </div>
+</div>
+
+<div id="screen-over" class="screen hidden">
+  <div class="panel">
+    <h1 id="over-title">BUSTED</h1>
+    <p id="over-sub"></p>
+    <button id="btn-restart" class="btn">↻ &nbsp;BACK ON THE STREETS</button>
+  </div>
+</div>
+
+<div id="screen-pause" class="screen hidden">
+  <div class="panel">
+    <h1 style="font-size:40px">PAUSED</h1>
+    <p>Take a breath, Ace. The city will wait.</p>
+    <button id="btn-resume" class="btn">▶ &nbsp;RESUME</button><br>
+    <button id="btn-retry-mission" class="btn ghost">↻ Restart mission</button>
+    <button id="btn-quit" class="btn ghost">■ Quit to title</button>
+  </div>
+</div>
+
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
