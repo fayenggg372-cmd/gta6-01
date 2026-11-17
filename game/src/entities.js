@@ -310,7 +310,7 @@ export class Police {
     this.spawnTimer -= dt;
     if (this.cars.length < want && this.spawnTimer <= 0) {
       this.spawnTimer = 2.5;
-      const a = Math.atan2(target.x, target.z) + Math.PI + range(Math.random(), -0.6, 0.6);
+      const a = Math.atan2(target.x, target.z) + Math.PI + range(Math.random, -0.6, 0.6);
       const x = clamp(target.x + Math.sin(a) * 55, -200, 200);
       const z = clamp(target.z + Math.cos(a) * 55, -200, 200);
       const car = new Car(this.scene, x, z, Math.atan2(target.x - x, target.z - z), 0x14161c, true);

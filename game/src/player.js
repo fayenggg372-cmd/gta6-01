@@ -132,6 +132,7 @@ export class Player {
     this.speed += (target - this.speed) * Math.min(1, dt * 10);
     const nx = this.x + mx * this.speed * dt;
     const nz = this.z + mz * this.speed * dt;
+    const [rx, rz] = resolveCircleColliders(nx, nz, PLAYER.radius, w.colliders);
     let fx = rx, fz = rz;
     // Soft push from cars (they don't run the player over by physics alone).
     for (const car of w.allCars) {

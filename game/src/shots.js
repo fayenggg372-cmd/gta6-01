@@ -6,7 +6,7 @@ import { SCREEN_TITLE, SCREEN_PLAY, SCREEN_OVER } from './render.js';
 
 const START_STEPS = Math.floor(4 / STEP);
 const PLAY_STEPS = Math.floor(24 / STEP);
-const END_STEPS = Math.floor(600 / STEP);
+const END_STEPS = Math.floor(150 / STEP);
 
 function autopilot(game) {
   const p = game.player;
@@ -67,9 +67,9 @@ export function stageShot(name, game) {
     drive(PLAY_STEPS, true);
     return game.over ? SCREEN_OVER : SCREEN_PLAY;
   }
-  // end: start with heat and let the autopilot get busted.
+  // end: start with heat and let the autopilot run; busted if caught, else a live chase.
   game.startGame(false);
   game.setWanted(3, true);
   drive(END_STEPS, true);
-  return SCREEN_OVER;
+  return game.over ? SCREEN_OVER : SCREEN_PLAY;
 }
