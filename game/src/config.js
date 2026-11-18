@@ -1,3 +1,4 @@
+// Round 2: race entry fees and harbour-job pay are tuned against the economy values defined here.
 // Port Solano — an original open-world crime game (not affiliated with Rockstar Games).
 // All tuning numbers, colours and mission definitions live in this one file,
 // so the feel of the game can be retuned without touching the simulation.

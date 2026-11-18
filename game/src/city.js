@@ -1,3 +1,4 @@
+// Round 2: the marina district registers its own colliders and minimap buildings with this city.
 // Port Solano: a procedural sunset city. All original geometry, textures and names.
 // The city is built once from a seed: ground, beach and ocean, a road grid with
 // sidewalks, 1-3 buildings per block, landmark signs, lamp posts and palm trees.

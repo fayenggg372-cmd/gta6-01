@@ -1,3 +1,4 @@
+// Round 2: harbour-job payouts reuse the cash blip and hot-cargo pickups reuse the wanted sting.
 // Procedural WebAudio: no audio assets, everything is synthesized on the fly.
 // The engine hum is a pair of detuned oscillators; every other sound is a
 // short tone or a burst of filtered noise, so the game ships zero audio files.

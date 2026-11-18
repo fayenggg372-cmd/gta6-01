@@ -1,3 +1,4 @@
+// Round 2: race checkpoints are placed on the same road grid the traffic in this file drives on.
 // Vehicles, pedestrians, police and pickups — everyone who shares the streets
 // with the player. Cars are simple box-built meshes; traffic follows the road
 // grid, pedestrians wander the sidewalks and flee from danger, and police

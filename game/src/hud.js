@@ -1,3 +1,4 @@
+// Round 2: the objective line now also carries harbour-job and street-race progress when no mission runs.
 // HUD: DOM readouts + a live 2D minimap canvas.
 // The minimap redraws every frame: ocean and blocks, road lines, the pulsing
 // mission marker, pedestrians, traffic, flashing police dots and the player arrow.

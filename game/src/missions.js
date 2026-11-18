@@ -1,3 +1,4 @@
+// Round 2: harbour jobs and street races only write the objective line while no mission or taxi is active here.
 // Missions: a 3-job story chain, then repeatable taxi fares.
 // The beacon is a pink light column + ground ring marking the current target;
 // the story advances on completion and hands over to taxi work when done.

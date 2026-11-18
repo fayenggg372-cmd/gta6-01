@@ -1,3 +1,4 @@
+// Round 2: the marina, harbour jobs and weather each seed their own generator from these helpers.
 // Deterministic RNG (mulberry32) so ?shot= scenes and replays are reproducible
 // from the same seed. Everything in the city, traffic and missions draws from
 // these helpers, so a given seed always builds the same Port Solano.

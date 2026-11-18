@@ -1,3 +1,4 @@
+// Round 2: KeyE starts harbour jobs at the market stall and enters street races at the cyan gates.
 // Keyboard + mouse input for a desktop browser. Keyboard and mouse only:
 // keys are held state, `pressed` is edge-triggered and consumed once per step.
 export class Input {

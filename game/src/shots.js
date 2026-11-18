@@ -1,3 +1,4 @@
+// Round 2: the staged play shot still drives the autopilot through the same first mission target.
 // Deterministic screenshot scenes behind ?shot=start|play|end (same seed => same frame).
 // Each one plays the real rules forward with a simple autopilot, then returns the
 // screen the renderer should draw over the staged world.

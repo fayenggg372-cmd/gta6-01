@@ -1,3 +1,4 @@
+// Round 2: the weather module only retunes the fog this renderer draws, never the city lights.
 // Screens + the three.js renderer (scene, camera, tracer line).
 // The renderer owns the WebGL canvas; the game only asks it to follow the
 // player and to draw the brief hitscan tracer after a shot.

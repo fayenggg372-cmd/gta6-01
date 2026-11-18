@@ -13,6 +13,10 @@ import { Missions } from './missions.js';
 import { HUD } from './hud.js';
 import { Renderer, SCREEN_TITLE, SCREEN_PLAY, SCREEN_OVER, SCREEN_PAUSED } from './render.js';
 import { stageShot } from './shots.js';
+import { MarinaDistrict } from './marina.js';
+import { HarborJobs } from './harbor.js';
+import { StreetRaces } from './races.js';
+import { Weather } from './weather.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -66,6 +70,10 @@ export class Game {
     this.police = new Police(this.scene, this.city);
     this.pickups = new Pickups(this.scene);
     this.missions = new Missions(this.scene, this);
+    this.marina = new MarinaDistrict(this.scene, this.city, this.seed);
+    this.harbor = new HarborJobs(this.scene, this);
+    this.races = new StreetRaces(this.scene, this);
+    this.weather = new Weather(this.scene, this);
     for (let i = 0; i < 8; i++) {
       this.pickups.spawn(range(this.rng, -180, 180), range(this.rng, -180, 180), ECONOMY.pickupCash);
     }
@@ -88,6 +96,10 @@ export class Game {
     for (const it of this.pickups.items) this.scene.remove(it.mesh);
     this.scene.remove(this.player.mesh);
     if (this.missions) this.scene.remove(this.missions.beacon.group);
+    if (this.marina) this.marina.dispose();
+    if (this.harbor) this.harbor.dispose();
+    if (this.races) this.races.dispose();
+    if (this.weather) this.weather.dispose();
   }
 
   _world() {
@@ -272,6 +284,10 @@ export class Game {
       this.message(`+$${gained}`, 'Street cash');
     }
     this.missions.update(dt);
+    if (this.marina) this.marina.update(dt, this);
+    if (this.harbor) this.harbor.update(dt);
+    if (this.races) this.races.update(dt);
+    if (this.weather) this.weather.update(dt);
 
     // Wanted decay: stars fall only while hidden from the police.
     if (this.wanted > 0 && this.elapsed - this._lastCrime > WANTED.decayDelay) {

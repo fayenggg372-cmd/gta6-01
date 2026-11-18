@@ -1,3 +1,4 @@
+// Round 2: the marina piers end before the deep-water line so the player here can never walk off the map.
 // The player: on foot (third person) and behind the wheel.
 // On foot the player walks camera-relative, punches and shoots; in a car the
 // same keys drive, and running over a pedestrian is a crime like any other.

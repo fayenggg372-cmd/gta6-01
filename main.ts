@@ -1,3 +1,4 @@
+// Round 2: the dossier now covers the marina, harbour jobs, street races and dynamic weather.
 // Port Solano — the gta6-01 entry (Node 22, standard library only).
 //
 // The game is this directory's game/ folder: plain static files a desktop
