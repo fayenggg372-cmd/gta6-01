@@ -129,3 +129,5 @@ export class HUD {
     ctx.fillText('N', S / 2 - 3, 11);
   }
 }
+
+// Hidden Packages show their count in the objective line when no mission is running.

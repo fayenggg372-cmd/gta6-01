@@ -108,3 +108,5 @@ export const MISSIONS = [
 ];
 
 export const FONT = 'system-ui, -apple-system, "Segoe UI", sans-serif';
+
+// Hidden Packages pay $50 per parcel, $500 bonus for all 20 (see packages.js).

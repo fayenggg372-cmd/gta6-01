@@ -249,3 +249,5 @@ export function resolveCircleColliders(x, z, r, colliders) {
   }
   return [x, z];
 }
+
+// Hidden Packages read the building list and road lines to place parcels.

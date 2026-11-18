@@ -184,3 +184,5 @@ export class HarborJobs {
     if (this.scene) this.scene.remove(this.beacon);
   }
 }
+
+// Hidden Packages use a golden beacon so it never clashes with the amber harbour one.

@@ -92,3 +92,5 @@ export class AudioSys {
     this.sirenOn = true;
   }
 }
+
+// Hidden Packages reuse the cash jingle on pickup and the mission fanfare on completion.

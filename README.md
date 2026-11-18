@@ -61,3 +61,12 @@ once the files are in place.
 - **Mouse** — steer the camera
 - **Escape** or **P** — pause
 - **M** — mute the sound
+
+## Hidden packages
+
+- **Hidden Packages** — twenty parcels tucked around Port Solano: beside
+  buildings, on street corners, along the beach and around the marina
+  waterfront. Each one glows warm orange, and a soft golden beacon marks
+  the nearest parcel you have not found yet. Walk or drive within a few
+  metres to pick one up — no button needed. Every parcel pays $50, and
+  finding all twenty pays a $500 bonus.

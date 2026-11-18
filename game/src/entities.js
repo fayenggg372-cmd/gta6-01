@@ -378,3 +378,5 @@ export class Pickups {
     return gained;
   }
 }
+
+// Hidden Packages are collected on foot or while driving — no interaction key needed.

@@ -259,3 +259,5 @@ export class StreetRaces {
     this.scene.remove(this.checkpointGroup);
   }
 }
+
+// Hidden Packages use a golden beacon, distinct from the cyan race beacons.

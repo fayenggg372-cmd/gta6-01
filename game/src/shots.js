@@ -74,3 +74,5 @@ export function stageShot(name, game) {
   drive(END_STEPS, true);
   return game.over ? SCREEN_OVER : SCREEN_PLAY;
 }
+
+// Hidden Packages are staged in the play shot like the other round-2 systems.

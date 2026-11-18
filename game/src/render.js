@@ -69,3 +69,5 @@ export class Renderer {
     }
   }
 }
+
+// Hidden Packages add a soft golden light column for the nearest uncollected parcel.

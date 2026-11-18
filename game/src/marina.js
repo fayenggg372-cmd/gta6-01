@@ -326,3 +326,5 @@ export class MarinaDistrict {
     }
   }
 }
+
+// Hidden Packages hide three parcels along the marina waterfront to the south.

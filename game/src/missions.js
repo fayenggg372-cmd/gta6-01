@@ -183,3 +183,5 @@ export class Missions {
     }
   }
 }
+
+// Hidden Packages only write the objective line while no story mission or taxi is active.

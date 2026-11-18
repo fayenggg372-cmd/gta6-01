@@ -241,3 +241,5 @@ export class Player {
     };
   }
 }
+
+// Hidden Packages check the player x/z each step, on foot or behind the wheel.

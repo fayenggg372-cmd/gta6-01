@@ -31,3 +31,5 @@ export function dist2(ax, az, bx, bz) {
   const dx = ax - bx, dz = az - bz;
   return dx * dx + dz * dz;
 }
+
+// Hidden Packages roll their own seeded generator so they never eat the shared RNG.

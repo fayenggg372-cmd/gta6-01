@@ -54,3 +54,5 @@ export class Input {
     this.clicked = false;
   }
 }
+
+// Hidden Packages need no input: collection is automatic within about 3 metres.

@@ -169,3 +169,5 @@ export class Weather {
     }
   }
 }
+
+// Hidden Packages sit at ground level, so rain and fog never hide their glow.

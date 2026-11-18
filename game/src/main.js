@@ -17,6 +17,7 @@ import { MarinaDistrict } from './marina.js';
 import { HarborJobs } from './harbor.js';
 import { StreetRaces } from './races.js';
 import { Weather } from './weather.js';
+import { HiddenPackages } from './packages.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -74,6 +75,7 @@ export class Game {
     this.harbor = new HarborJobs(this.scene, this);
     this.races = new StreetRaces(this.scene, this);
     this.weather = new Weather(this.scene, this);
+    this.packages = new HiddenPackages(this.scene, this);
     for (let i = 0; i < 8; i++) {
       this.pickups.spawn(range(this.rng, -180, 180), range(this.rng, -180, 180), ECONOMY.pickupCash);
     }
@@ -100,6 +102,7 @@ export class Game {
     if (this.harbor) this.harbor.dispose();
     if (this.races) this.races.dispose();
     if (this.weather) this.weather.dispose();
+    if (this.packages) this.packages.dispose();
   }
 
   _world() {
@@ -288,6 +291,7 @@ export class Game {
     if (this.harbor) this.harbor.update(dt);
     if (this.races) this.races.update(dt);
     if (this.weather) this.weather.update(dt);
+    if (this.packages) this.packages.update(dt);
 
     // Wanted decay: stars fall only while hidden from the police.
     if (this.wanted > 0 && this.elapsed - this._lastCrime > WANTED.decayDelay) {

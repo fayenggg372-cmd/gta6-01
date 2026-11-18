@@ -49,3 +49,5 @@ const DOSSIER_LIMITS = {
 };
 
 writeFileSync(join(out, 'dossier.json'), buildDossier(out, DOSSIER_LIMITS));
+
+// Hidden Packages (round 3): 20 seed-placed parcels, $50 each + $500 bonus.

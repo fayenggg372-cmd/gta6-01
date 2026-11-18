@@ -4,3 +4,5 @@ gta6-01-kit/
 out/
 node_modules/
 .DS_Store
+
+# Hidden packages live in game/src/packages.js — no build artifacts here.
