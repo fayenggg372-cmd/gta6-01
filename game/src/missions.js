@@ -1,4 +1,6 @@
 // Missions: a 3-job story chain, then repeatable taxi fares.
+// The beacon is a pink light column + ground ring marking the current target;
+// the story advances on completion and hands over to taxi work when done.
 import * as THREE from '../vendor/three.module.min.js';
 import { MISSIONS, STEP } from './config.js';
 import { pick, range } from './random.js';

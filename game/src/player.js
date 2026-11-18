@@ -1,4 +1,6 @@
 // The player: on foot (third person) and behind the wheel.
+// On foot the player walks camera-relative, punches and shoots; in a car the
+// same keys drive, and running over a pedestrian is a crime like any other.
 import * as THREE from '../vendor/three.module.min.js';
 import { PLAYER, CAR } from './config.js';
 import { clamp, angleLerp, dist2 } from './random.js';
@@ -19,7 +21,7 @@ function makePlayerMesh() {
   const legR = legL.clone(); legR.position.x = 0.16; g.add(legR);
   const armMat = new THREE.MeshLambertMaterial({ color: 0x2e9e6b });
   const armL = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.65, 0.2), armMat);
-  armL.position.set(-0.42, 1.1, 0); g.add(legL.clone()); g.add(armL);
+  armL.position.set(-0.42, 1.1, 0); g.add(armL);
   const armR = armL.clone(); armR.position.x = 0.42; g.add(armR);
   return { group: g, legL, legR, armL, armR };
 }

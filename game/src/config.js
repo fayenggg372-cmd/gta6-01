@@ -1,5 +1,6 @@
 // Port Solano — an original open-world crime game (not affiliated with Rockstar Games).
-// Every tuning number, colour and mission definition in one place.
+// All tuning numbers, colours and mission definitions live in this one file,
+// so the feel of the game can be retuned without touching the simulation.
 export const STEP = 1 / 60;
 
 export const CITY = {

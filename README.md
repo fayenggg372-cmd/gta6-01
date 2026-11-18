@@ -54,6 +54,12 @@ you're BUSTED; run out of health and you're WASTED.
 - `game/index.html` — the game page; `game/src/` is the game (three.js, ES modules).
 - `game/vendor/three.module.min.js` — three.js r160, vendored (MIT).
 - `screenshots/` — 3 screenshots taken in a headless browser (`?shot=start|play|end`).
+  The shot scenes are deterministic: the same `seed` always stages the same frame.
+
+## Screenshots
+
+The three screenshots show the title screen, live gameplay, and a police chase
+(`?shot=start|play|end&seed=1`), captured headless against the local server.
 
 ---
 

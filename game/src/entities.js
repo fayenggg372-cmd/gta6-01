@@ -1,4 +1,7 @@
-// Vehicles, pedestrians, police and pickups.
+// Vehicles, pedestrians, police and pickups — everyone who shares the streets
+// with the player. Cars are simple box-built meshes; traffic follows the road
+// grid, pedestrians wander the sidewalks and flee from danger, and police
+// cruisers chase the player while the wanted level is up.
 import * as THREE from '../vendor/three.module.min.js';
 import { CAR, TRAFFIC_COUNT, PED_COUNT, POLICE_MAX, PITCH } from './config.js';
 import { mulberry32, pick, range, clamp, angleLerp, dist2 } from './random.js';
@@ -71,7 +74,6 @@ export class Car {
 
   // Player driving: throttle -1..1, steer -1..1.
   drive(dt, throttle, steerInput, colliders, others) {
-    const fwd = { x: Math.sin(this.heading), z: Math.cos(this.heading) };
     if (throttle > 0) this.speed += CAR.accel * throttle * dt;
     else if (throttle < 0) {
       this.speed += (this.speed > 0.5 ? -CAR.brake : CAR.accel * 0.7 * throttle) * dt;

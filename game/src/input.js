@@ -1,4 +1,5 @@
-// Keyboard + mouse input. Desktop browser, keyboard and mouse only.
+// Keyboard + mouse input for a desktop browser. Keyboard and mouse only:
+// keys are held state, `pressed` is edge-triggered and consumed once per step.
 export class Input {
   constructor(canvas) {
     this.keys = new Set();
@@ -41,6 +42,7 @@ export class Input {
 
   down(code) { return this.keys.has(code); }
   wasPressed(code) { return this.pressed.has(code); }
+  // Signed axis from a pair of keys: -1, 0 or 1.
   axis(neg, pos) { return (this.keys.has(pos) ? 1 : 0) - (this.keys.has(neg) ? 1 : 0); }
 
   // Consume per-frame edge state after the simulation step.

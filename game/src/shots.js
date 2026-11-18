@@ -8,6 +8,8 @@ const START_STEPS = Math.floor(4 / STEP);
 const PLAY_STEPS = Math.floor(24 / STEP);
 const END_STEPS = Math.floor(150 / STEP);
 
+// Steer toward the mission target; on foot, walk to the nearest car first
+// (mission 1 needs wheels) and get in once close enough.
 function autopilot(game) {
   const p = game.player;
   const t = game.missions.target;
@@ -21,8 +23,6 @@ function autopilot(game) {
     const steer = Math.max(-1, Math.min(1, dh * 1.5));
     return { throttle: Math.abs(dh) > 1.9 ? -0.6 : 1, steer };
   }
-  // On foot: get into the nearest car first (mission 1 needs wheels),
-  // then drive to the target.
   const car = game.traffic.nearest(p.x, p.z, 500, game.traffic.allCars());
   if (car) {
     const d = Math.hypot(car.x - p.x, car.z - p.z);

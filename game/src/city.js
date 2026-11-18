@@ -1,4 +1,7 @@
 // Port Solano: a procedural sunset city. All original geometry, textures and names.
+// The city is built once from a seed: ground, beach and ocean, a road grid with
+// sidewalks, 1-3 buildings per block, landmark signs, lamp posts and palm trees.
+// It also returns the colliders the physics uses and the spawn points.
 import * as THREE from '../vendor/three.module.min.js';
 import { CITY, PITCH, HALF, WORLD, PALETTE } from './config.js';
 import { mulberry32, pick, range, rangeInt, chance } from './random.js';
@@ -15,7 +18,7 @@ function canvasTexture(w, h, draw) {
 function buildingTexture(rng, base) {
   return canvasTexture(128, 256, (g, w, h) => {
     g.fillStyle = base; g.fillRect(0, 0, w, h);
-    // Subtle vertical shading.
+    // Subtle vertical shading so facades are not flat.
     const grad = g.createLinearGradient(0, 0, w, 0);
     grad.addColorStop(0, 'rgba(0,0,0,0.25)'); grad.addColorStop(0.5, 'rgba(255,255,255,0.06)'); grad.addColorStop(1, 'rgba(0,0,0,0.25)');
     g.fillStyle = grad; g.fillRect(0, 0, w, h);

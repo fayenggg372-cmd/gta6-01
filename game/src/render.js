@@ -1,4 +1,6 @@
 // Screens + the three.js renderer (scene, camera, tracer line).
+// The renderer owns the WebGL canvas; the game only asks it to follow the
+// player and to draw the brief hitscan tracer after a shot.
 import * as THREE from '../vendor/three.module.min.js';
 import { PALETTE } from './config.js';
 
@@ -30,7 +32,7 @@ export class Renderer {
 
   render(game) {
     const cam = game.player.camera(0);
-    // Smooth camera follow.
+    // Smooth camera follow: exponential ease toward the target spot.
     const k = 1 - Math.pow(0.0001, 1 / 60);
     this.camera.position.x += (cam.pos.x - this.camera.position.x) * k;
     this.camera.position.y += (cam.pos.y - this.camera.position.y) * k;

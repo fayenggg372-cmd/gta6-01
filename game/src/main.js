@@ -1,4 +1,6 @@
 // Port Solano — game wiring: loop, wanted system, save, screens, screenshots.
+// The Game owns every subsystem (city, traffic, peds, police, player, missions,
+// HUD, audio) and steps them at a fixed 60 Hz; rendering and input run on top.
 import * as THREE from '../vendor/three.module.min.js';
 import { STEP, CITY, HALF, ECONOMY, WANTED, SAVE_KEY, MISSIONS } from './config.js';
 import { mulberry32, range } from './random.js';
@@ -124,10 +126,6 @@ export class Game {
     });
     $('btn-mute').addEventListener('click', () => this.toggleMute());
     $('hud-mute').addEventListener('click', () => this.toggleMute());
-    canvasClickToFocus();
-    function canvasClickToFocus() {
-      // Clicking the canvas also (re)starts audio on first interaction.
-    }
   }
 
   toggleMute() {
